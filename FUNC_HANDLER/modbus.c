@@ -88,11 +88,11 @@ void modbus_process_command(u8 *pstr, u16 strlen)
     if (strlen < 5)
 #endif
 #ifdef MODBUS_DEVICE
-    if (strlen < 8)
+        if (strlen < 8)
 #endif
-    {
-        return;
-    }
+        {
+            return;
+        }
     num = 0;
     do
     {

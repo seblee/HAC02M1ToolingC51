@@ -58,7 +58,7 @@ void ui(void)
         if (picNow == 0x0000)
         {
             u16 cache = 0;
-            ReadDGUS(0xa02d, (u8 *)(&cache), 2);
+            ReadDGUS(0xa02B, (u8 *)(&cache), 2);
             if ((testState != 1) && (cache == 1))
             {
                 beepCount += 1;
@@ -93,7 +93,7 @@ void ui(void)
                     timerCounter++;
                     if (picNow != 0)
                         JumpPage(0);
-                    //用户等级
+                    // 用户等级
                 }
             }
         }
@@ -153,10 +153,10 @@ void caculateGroupCtrlPic(void)
 
     for (i = 0; i < 16; i++)
     {
-        //在线状态
+        // 在线状态
         if ((mb_teamwork_sts_regs[SYS_STS_ONLINE_0] & (1 << i)) != 0)
         {
-            //运行
+            // 运行
             if ((mb_teamwork_sts_regs[SYS_STS_FINALOUT_0] & (1 << i)) != 0)
             {
                 // get equipment status
@@ -167,48 +167,48 @@ void caculateGroupCtrlPic(void)
                     case 0x00:
                         lw_teamwork_icon_sta[i] = 5;
                         break;
-                    case 0x01:  //制热
+                    case 0x01:  // 制热
                         lw_teamwork_icon_sta[i] = 6;
                         break;
-                    case 0x02:  //制冷
+                    case 0x02:  // 制冷
                         lw_teamwork_icon_sta[i] = 7;
                         break;
-                    case 0x04:  //加湿
+                    case 0x04:  // 加湿
                         lw_teamwork_icon_sta[i] = 8;
                         break;
-                    case 0x05:  //加湿+制热
+                    case 0x05:  // 加湿+制热
                         lw_teamwork_icon_sta[i] = 9;
                         break;
-                    case 0x06:  //加湿+制冷
+                    case 0x06:  // 加湿+制冷
                         lw_teamwork_icon_sta[i] = 10;
                         break;
-                    case 0x08:  //除湿
+                    case 0x08:  // 除湿
                         lw_teamwork_icon_sta[i] = 3;
                         break;
-                    case 0x09:  //除湿+制热
+                    case 0x09:  // 除湿+制热
                         lw_teamwork_icon_sta[i] = 4;
                         break;
                     default:
                         lw_teamwork_icon_sta[i] = 5;
                         break;
                 }
-                //故障
+                // 故障
                 if ((mb_teamwork_sts_regs[SYS_STS_MALFUN_0] & (1 << i)) != 0)
                 {
                     lw_teamwork_icon_sta[i] += 8;
                 }
-                else  //正常
+                else  // 正常
                 {
-                    //保持原值
+                    // 保持原值
                 }
             }
-            else  //备用
-            {     //故障
+            else  // 备用
+            {     // 故障
                 if ((mb_teamwork_sts_regs[SYS_STS_MALFUN_0] & (1 << i)) != 0)
                 {
                     lw_teamwork_icon_sta[i] = 2;
                 }
-                else  //正常
+                else  // 正常
                 {
                     lw_teamwork_icon_sta[i] = 1;
                 }
@@ -221,10 +221,10 @@ void caculateGroupCtrlPic(void)
     }
     for (i = 16; i < GROUP_DEVICE_COUNT; i++)
     {
-        //在线状态
+        // 在线状态
         if ((mb_teamwork_sts_regs[SYS_STS_ONLINE_1] & (1 << (i - 16))) != 0)
         {
-            //运行
+            // 运行
             if ((mb_teamwork_sts_regs[SYS_STS_FINALOUT_1] & (1 << (i - 16))) != 0)
             {
                 // get equipment status
@@ -235,48 +235,48 @@ void caculateGroupCtrlPic(void)
                     case 0x00:
                         lw_teamwork_icon_sta[i] = 5;
                         break;
-                    case 0x01:  //制热
+                    case 0x01:  // 制热
                         lw_teamwork_icon_sta[i] = 6;
                         break;
-                    case 0x02:  //制冷
+                    case 0x02:  // 制冷
                         lw_teamwork_icon_sta[i] = 7;
                         break;
-                    case 0x04:  //加湿
+                    case 0x04:  // 加湿
                         lw_teamwork_icon_sta[i] = 8;
                         break;
-                    case 0x05:  //加湿+制热
+                    case 0x05:  // 加湿+制热
                         lw_teamwork_icon_sta[i] = 9;
                         break;
-                    case 0x06:  //加湿+制冷
+                    case 0x06:  // 加湿+制冷
                         lw_teamwork_icon_sta[i] = 10;
                         break;
-                    case 0x08:  //除湿
+                    case 0x08:  // 除湿
                         lw_teamwork_icon_sta[i] = 3;
                         break;
-                    case 0x09:  //除湿+制热
+                    case 0x09:  // 除湿+制热
                         lw_teamwork_icon_sta[i] = 4;
                         break;
                     default:
                         lw_teamwork_icon_sta[i] = 5;
                         break;
                 }
-                //故障
+                // 故障
                 if ((mb_teamwork_sts_regs[SYS_STS_MALFUN_1] & (1 << (i - 16))) != 0)
                 {
                     lw_teamwork_icon_sta[i] += 8;
                 }
-                else  //正常
+                else  // 正常
                 {
-                    //保持原值
+                    // 保持原值
                 }
             }
-            else  //备用
-            {     //故障
+            else  // 备用
+            {     // 故障
                 if ((mb_teamwork_sts_regs[SYS_STS_MALFUN_1] & (1 << (i - 16))) != 0)
                 {
                     lw_teamwork_icon_sta[i] = 2;
                 }
-                else  //正常
+                else  // 正常
                 {
                     lw_teamwork_icon_sta[i] = 1;
                 }
